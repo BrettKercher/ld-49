@@ -133,7 +133,7 @@ public class GlobalVisionManager : MonoBehaviour {
         _visibleNodes = new HashSet<Vector3>();
     }
 
-    private void OnValidate() {
+    private void Start() {
         _effectsTileMap.SetTilemapColor(_visionRangeColor);
     }
 }
