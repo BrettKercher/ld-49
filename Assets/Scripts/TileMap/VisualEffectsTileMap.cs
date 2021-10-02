@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class VisualEffectsTileMap : MonoBehaviour {
-
-    [SerializeField] private float _minHeight = -1;
     [SerializeField] private Tilemap _tilemap;
 
     public void SetTilemapColor(Color color) {
@@ -24,11 +22,8 @@ public class VisualEffectsTileMap : MonoBehaviour {
     public void HighlightNodes(Vector3[] nodePositions, TileBase tileToUse) {
         var tileCellPositions = new List<Vector3Int>();
         foreach (var nodePosition in nodePositions) {
-            var heightLevel = nodePosition.y;
-            if (heightLevel >= _minHeight) {
-                var cellPosition = _tilemap.WorldToCell(nodePosition);
-                tileCellPositions.Add(cellPosition);
-            }
+            var cellPosition = _tilemap.WorldToCell(nodePosition);
+            tileCellPositions.Add(cellPosition);
         }
 
         var tiles = new TileBase[tileCellPositions.Count];

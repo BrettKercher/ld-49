@@ -38,27 +38,6 @@ internal struct BuildContainerFromFilteredIndicesJob<T> : IJobParallelFor where 
     }
 }
 
-[BurstCompile]
-internal struct SetupRaycastsJob : IJobParallelFor {
-    [ReadOnly] public NativeArray<float3> nodePositions;
-    [ReadOnly] public NativeArray<float> distances;
-    [ReadOnly] public float3 finalPosition;
-    [ReadOnly] public int layerMask;
-    public NativeArray<RaycastCommand> raycasts;
- 
-    public void Execute(int index) {
-        raycasts[index] = new RaycastCommand(nodePositions[index], finalPosition - nodePositions[index], distances[index], layerMask);
-    }
-}
-
-[BurstCompile]
-internal struct FilterNodesByLineOfSightJob : IJobParallelForFilter {
-    [ReadOnly] public NativeArray<RaycastHit> raycastHits;
-    public bool Execute(int index) {
-        return raycastHits[index].distance <= 0;
-    }
-}
-
 // Keeps track of which entities can see which nodes
 public class GlobalVisionManager : MonoBehaviour {
 
@@ -80,8 +59,6 @@ public class GlobalVisionManager : MonoBehaviour {
     public Vector3[] CalculateVisibleNodesInRange(float range, Vector3 startingPosition, float viewAngle, Vector3 forwardVector) {
         var nodes = _targetingGraph.nodes.Where(x => x != null && x.Walkable);
         var nodePositions = nodes.Select(n => (float3)((Vector3)n.position)).ToArray();
-        
-        Debug.Log(startingPosition);
 
         // Filter node positions by distance. This job returns an array of indices which are used in the next job to
         // build an array of the filtered positions
@@ -118,52 +95,27 @@ public class GlobalVisionManager : MonoBehaviour {
         }.Schedule(filteredByDistanceIndices.Length, 32, distanceHandle);
         buildDistancesHandle.Complete();
 
-        // Prepare the array of raycastCommands for processing, setting the starting position, direction, and length for each
-        var raycastCommands = new NativeArray<RaycastCommand>(filteredByDistancePositions.Length, Allocator.TempJob);
-        var setupRaycastHandler = new SetupRaycastsJob {
-            finalPosition = startingPosition,
-            layerMask = LayerMask.GetMask("Ground"),
-            nodePositions = filteredByDistancePositions,
-            distances = filteredDistances,
-            raycasts = raycastCommands, // <-- gets written to
-        }.Schedule(filteredByDistancePositions.Length, 32, buildPositionsHandle);
 
-        // Run the actual raycasts
-        var raycastResults = new NativeArray<RaycastHit>(filteredByDistancePositions.Length, Allocator.TempJob);
-        var raycastDependency = RaycastCommand.ScheduleBatch(raycastCommands, raycastResults, 32, setupRaycastHandler );
-        raycastDependency.Complete();
-
-        // Filter the node positions once more, this time using the raycastResults to determine line of sight
-        var filteredByLOSIndices = new NativeList<int>(Allocator.TempJob);
-        var filterByLoS = new FilterNodesByLineOfSightJob {
-            raycastHits = raycastResults,
-        }.ScheduleAppend(filteredByLOSIndices, raycastResults.Length, 32);
-        filterByLoS.Complete();
-        
-        // Build the final array of node positions based on the filtered indices received from the previous job
-        var filteredByLoSPositions = new NativeArray<float3>(filteredByLOSIndices.Length, Allocator.TempJob, NativeArrayOptions.UninitializedMemory);
-        var buildHandle2 = new BuildContainerFromFilteredIndicesJob<float3> {
-            UnfilteredObjects = filteredByDistancePositions,
-            FilteredIndices = filteredByLOSIndices,
-            FilteredObjects = filteredByLoSPositions, // <-- gets written to
-        }.Schedule(filteredByLOSIndices.Length, 32, filterByLoS);
-        buildHandle2.Complete();
-
-        // Cast the final positions from a NativeArray<float3> into a Vector3[]
-        var finalNodePositions = filteredByLoSPositions.Reinterpret<Vector3>().ToArray();
+        var filteredByLOSPositions = new List<Vector3>();
+        for (var i = 0; i < filteredByDistancePositions.Length; i++) {
+            var nodePos = filteredByDistancePositions[i];
+            var nodePos2 = new float2(nodePos.x, nodePos.y);
+            var direction3 = (float3) startingPosition - nodePos;
+            var direction2 = new float2(direction3.x, direction3.y);
+            if (!Physics2D.Raycast(nodePos2, direction2, filteredDistances[i],
+                LayerMask.GetMask("Ground"))) {
+                filteredByLOSPositions.Add(nodePos);
+            }
+        }
 
         // Dispose all of our NativeArrays
         filteredByDistanceIndices.Dispose();
-        filteredByLOSIndices.Dispose();
-        filteredByLoSPositions.Dispose();
         allNodePositions.Dispose();
         allNodeDistances.Dispose();
         filteredByDistancePositions.Dispose();
         filteredDistances.Dispose();
-        raycastCommands.Dispose();
-        raycastResults.Dispose();
 
-        return finalNodePositions;
+        return filteredByLOSPositions.ToArray();
     }
 
     private void Awake() {
