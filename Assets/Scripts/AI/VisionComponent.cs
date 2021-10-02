@@ -29,9 +29,9 @@ public class VisionComponent : MonoBehaviour {
     private void Start() {
         _targetingGraph = (GridGraph) AstarPath.active.data.FindGraph(g => g.graphIndex == 1);
     }
-    
+
     private void Update() {
-        var closeEntities = Physics.OverlapSphere(transform.position, _visionRange + 0.25f, ~LayerMask.GetMask("Ground")).Select(i => i.gameObject);
+        var closeEntities = Physics2D.OverlapCircleAll(transform.position, _visionRange + 0.25f, ~LayerMask.GetMask("Ground")).Select(i => i.gameObject);
         _awareEntities.Clear();
 
         foreach (var entity in closeEntities) {
@@ -43,10 +43,14 @@ public class VisionComponent : MonoBehaviour {
                 continue;
             }
 
+            Debug.Log(entity.name);
+
             var activeNode = _targetingGraph.GetNearest(entity.transform.position).node;
             if (!IsNodeVisible(activeNode)) {
                 continue;
             }
+
+            Debug.Log("spotted");
 
             _awareEntities[entity.GetInstanceID()] = entity;
         }
