@@ -8,7 +8,6 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-
 [BurstCompile]
 internal struct FilterNodesByDistanceAndAngleJob : IJobParallelForFilter {
     [ReadOnly] public float maxDistance;

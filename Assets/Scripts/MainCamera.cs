@@ -5,7 +5,6 @@ using UnityEngine;
 public class MainCamera : MonoBehaviour {
 
     [SerializeField] private float _smoothTime = 0.1f;
-    [SerializeField] private float _panSpeed = 10f;
     [SerializeField] private GameObject _target;
 
     private Vector3 _panTarget;
