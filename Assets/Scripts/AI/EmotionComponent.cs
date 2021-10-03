@@ -24,6 +24,7 @@ public class EmotionComponent : MonoBehaviour {
 
         var sprite = _gameManager.GetEmoteSprite(emote);
         var emoteBubble = Instantiate(_emoteBubblePrefab).GetComponent<EmoteBubble>();
+        emoteBubble.transform.position = transform.position + new Vector3(0, 1, 0);
         emoteBubble.Init(sprite);
         _currentEmote = emoteBubble;
     }
