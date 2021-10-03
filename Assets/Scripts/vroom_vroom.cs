@@ -14,6 +14,7 @@ public class vroom_vroom : MonoBehaviour {
     // Start is called before the first frame update
     private void Awake() {
         _rigidBody = GetComponent<Rigidbody2D>();
+        _rigidBody.freezeRotation = true;
         _rigidBody.drag = 8f;
         _rigidBody.mass = 0.5f;
         _angularAcceleration = 0.05f;
