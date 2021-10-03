@@ -71,6 +71,10 @@ public class MainCamera : MonoBehaviour {
         }
     }
 
+    private void Start() {
+        _trackingTarget = true;
+    }
+
     private void FixedUpdate() {
         var goalPos = _trackingTarget ? _target.transform.position : _panTarget;
         var myPosition = transform.position;
