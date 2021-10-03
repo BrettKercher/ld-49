@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _breakThreshold: 4
   _nudgeResult: 0
-  _debrisObject: {fileID: 0}
+  _debrisObject: {fileID: 8586189735456955217, guid: 86910ed3ef797aa4ab0bd88819e55b9c, type: 3}
 --- !u!61 &804049978903930973
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.16}
+    oldSize: {x: 2, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
