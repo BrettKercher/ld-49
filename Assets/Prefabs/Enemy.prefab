@@ -297,3 +297,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _breakThreshold: 4
   _nudgeResult: 1
+  _debrisObject: {fileID: 2882639736631602229, guid: 60cc7d1d8366e104eb97dbc8e7880105, type: 3}

@@ -11,6 +11,7 @@ public class DestroyOnHit : MonoBehaviour {
 
     [SerializeField] private float _breakThreshold = 4f;
     [SerializeField] private NudgeResult _nudgeResult;
+    [SerializeField] private GameObject _debrisObject;
 
     private GameManager _gameManager;
 
@@ -24,6 +25,10 @@ public class DestroyOnHit : MonoBehaviour {
         }
 
         if (col.relativeVelocity.magnitude > _breakThreshold) {
+            if (_debrisObject != null) {
+                var debris = Instantiate(_debrisObject);
+                debris.transform.position = transform.position;
+            }
             Destroy(col.otherCollider.gameObject);
         }
         else if (_nudgeResult == NudgeResult.LOSE) {
