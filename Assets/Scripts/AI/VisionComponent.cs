@@ -14,6 +14,9 @@ public class VisionComponent : MonoBehaviour {
     public float VisionRange => _visionRange;
     public float VisionAngle => _visionAngle;
 
+    private bool _horseSpotted;
+    private GameManager _gameManager;
+
     public GameObject[] AwareEntities() {
         return _awareEntities.Values.ToArray();
     }
@@ -24,6 +27,7 @@ public class VisionComponent : MonoBehaviour {
 
     private void Awake() {
         _visualizer = GetComponent<VisionRangeVisualizer>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Start() {
@@ -38,19 +42,21 @@ public class VisionComponent : MonoBehaviour {
             if (entity == null) {
                 continue;
             }
+
             // Ignore ourselves
             if (entity == gameObject) {
                 continue;
             }
-
-            Debug.Log(entity.name);
 
             var activeNode = _targetingGraph.GetNearest(entity.transform.position).node;
             if (!IsNodeVisible(activeNode)) {
                 continue;
             }
 
-            Debug.Log("spotted");
+            if (!_horseSpotted) {
+                _horseSpotted = true;
+                _gameManager.OnHorseSpotted(gameObject);
+            }
 
             _awareEntities[entity.GetInstanceID()] = entity;
         }
