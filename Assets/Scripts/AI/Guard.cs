@@ -5,9 +5,6 @@ using Pathfinding;
 using UnityEngine;
 
 public class Guard : MonoBehaviour {
-
-    [SerializeField] private float _durability;
-    
     private GameManager _gameManager;
     private EmotionComponent _emote;
     private AIPath _pathFinding;
@@ -18,15 +15,6 @@ public class Guard : MonoBehaviour {
         _emote = GetComponent<EmotionComponent>();
         _pathFinding = GetComponent<AIPath>();
         _visionComponent = GetComponent<VisionComponent>();
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (Vector3.Magnitude(other.relativeVelocity) > _durability) {
-            Destroy(gameObject);
-        }
-        else {
-            _gameManager.OnHorseSpotted(gameObject);
-        }
     }
 
     private void Start() {
