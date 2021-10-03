@@ -8,11 +8,15 @@ public class vroom_vroom : MonoBehaviour {
     [SerializeField] private float _eqAcceleration = 200f;
     [SerializeField] private float _angularAcceleration = 0.05f;
     [SerializeField] private float _maxSpeed = 5f;
+    [SerializeField] private bool _isMoving = false;
+    
+    [SerializeField] private Animator _animator;
 
     private Rigidbody2D _rigidBody;
     
     // Start is called before the first frame update
     private void Awake() {
+        _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
         _rigidBody.freezeRotation = true;
         _rigidBody.drag = 8f;
@@ -54,6 +58,12 @@ public class vroom_vroom : MonoBehaviour {
             //tie the turning rate to the forward velocity 
             var speed = Vector2.Dot(_rigidBody.velocity, transform.right);
             _rigidBody.rotation -= h * speed * _angularAcceleration;
+            if (v > 0.5)
+            {
+                
+                _animator.SetTrigger("isMoving");
+            }
+            else{_animator.ResetTrigger("isMoving");}
 
             //acceleration scaling to max speed but min acceleration
             _acceleration = 800 * (speed / _maxSpeed) + 200;
