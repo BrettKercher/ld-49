@@ -16,7 +16,8 @@ public class Guard : MonoBehaviour {
     }
 
     private void OnHorseSpotted(GameObject spotter) {
-        Debug.Log("Spotted a horse!");
-        _emote.ShowEmote(EmotionComponent.Emote.ALERTED);
+        if (spotter == gameObject) {
+            _emote.ShowEmote(EmotionComponent.Emote.ALERTED);
+        }
     }
 }
