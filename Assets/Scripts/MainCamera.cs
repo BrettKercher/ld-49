@@ -16,6 +16,7 @@ public class MainCamera : MonoBehaviour {
     private float _panToTargetHoldTime;
     private Vector3 _returnPosition;
     private bool _autoPanning;
+    private bool _shouldPanBack;
     
     public delegate void BackToOldTargetHandler(MainCamera dispatcher);
     private event BackToOldTargetHandler BackToOldTarget;
@@ -37,6 +38,17 @@ public class MainCamera : MonoBehaviour {
         _panningThere = true;
         _panningBack = false;
         _panToTargetHoldTime = holdDuration;
+        _shouldPanBack = true;
+    }
+    
+    public void PanToPosition(Vector3 target) {
+        _autoPanning = true;
+        _trackingTarget = false;
+        _panTarget = target;
+
+        _panningThere = true;
+        _panningBack = false;
+        _shouldPanBack = false;
     }
     
     public void SubscribeToArrivedEvents(AtNewTargetHandler newTargetFunction, BackToOldTargetHandler oldTargetFunction) {
@@ -59,8 +71,12 @@ public class MainCamera : MonoBehaviour {
         }
     }
 
+    private void Start() {
+        _trackingTarget = true;
+    }
+
     private void FixedUpdate() {
-        var goalPos = _target.transform.position;
+        var goalPos = _trackingTarget ? _target.transform.position : _panTarget;
         var myPosition = transform.position;
         goalPos.z = -10f;
         transform.position = Vector3.SmoothDamp(myPosition, goalPos, ref _velocity, _smoothTime);
@@ -68,7 +84,9 @@ public class MainCamera : MonoBehaviour {
         if (_panningThere && (goalPos - transform.position).sqrMagnitude < 1) {
             _panningThere = false;
             AtNewTarget?.Invoke(this);
-            StartCoroutine(SetTargetAfterDelay(_returnPosition, _panToTargetHoldTime));
+            if (_shouldPanBack) {
+                StartCoroutine(SetTargetAfterDelay(_returnPosition, _panToTargetHoldTime));
+            }
         }
         
         if (_panningBack && (goalPos - transform.position).magnitude < 1) {
