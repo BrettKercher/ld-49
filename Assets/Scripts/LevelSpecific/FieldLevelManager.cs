@@ -22,10 +22,10 @@ public class FieldLevelManager : MonoBehaviour {
     {
         var scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
-        Debug.Log("im here");
+        //Debug.Log("im here");
     }
 
     public void NextLevelOnClick() {
-        SceneManager.LoadScene(0);//ints and such also work.
+        SceneManager.LoadScene(2);//ints and such also work.
     }
 }

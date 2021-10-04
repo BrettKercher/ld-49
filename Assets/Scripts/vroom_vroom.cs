@@ -65,7 +65,7 @@ public class vroom_vroom : MonoBehaviour {
             else{_animator.ResetTrigger("isMoving");}
 
             //acceleration scaling to max speed but min acceleration
-            _acceleration = 800 * (speed / _maxSpeed) + 200;
+            _acceleration = 900 * (speed / _maxSpeed) + 200;
             if (speed > 4)
             {
                 _particleSystem.enableEmission = true;
