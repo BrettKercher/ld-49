@@ -28,6 +28,9 @@ public class Guard : MonoBehaviour {
 
         _pathFinding.isStopped = true;
         _visionComponent.SetVisualizerEnable(false);
+    }
 
+    private void OnDestroy() {
+        _gameManager.UnsubscribeToHorseSpottedEvent(OnHorseSpotted);
     }
 }

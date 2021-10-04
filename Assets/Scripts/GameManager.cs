@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour {
     public void SubscribeToHorseSpottedEvent(HorseSpottedHandler onSpottedFunction) {
         HorseSpotted += onSpottedFunction;
     }
+    
+    public void UnsubscribeToHorseSpottedEvent(HorseSpottedHandler onSpottedFunction) {
+        HorseSpotted -= onSpottedFunction;
+    }
 
     public void OnHorseSpotted(GameObject spotter) {
         _mainCamera.PanToPosition(spotter.transform.position);

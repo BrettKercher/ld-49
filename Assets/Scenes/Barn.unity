@@ -1513,7 +1513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _winGate: {fileID: 1321369200}
-  _win: {fileID: 0}
+  _win: {fileID: 1264814417}
 --- !u!1001 &211931173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6055,11 +6055,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5038262598545987214, guid: 98ddfe9c92f86ab48831abd65723aa47, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8
+      value: -9.84
       objectReference: {fileID: 0}
     - target: {fileID: 5038262598545987214, guid: 98ddfe9c92f86ab48831abd65723aa47, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5038262598545987214, guid: 98ddfe9c92f86ab48831abd65723aa47, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6969,6 +6969,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2764403168387295440, guid: 8947dbe675b12154c9f7b564519c397b, type: 3}
   m_PrefabInstance: {fileID: 1261290066}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1264814417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3207292920862032128, guid: 34863515c83302e41b25755331ad55e2, type: 3}
+  m_PrefabInstance: {fileID: 1491856821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b824e88ab1e5d8f408610f8166e4a10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1271453583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6744434939949972792, guid: 03be61a57e7cea24cadca92ef4b0f4aa, type: 3}
@@ -117347,6 +117358,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: BarnLevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 3207292921244747414, guid: 34863515c83302e41b25755331ad55e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207292921291602613, guid: 34863515c83302e41b25755331ad55e2, type: 3}
+      propertyPath: m_Text
+      value: 'Winner
+
+        The End'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34863515c83302e41b25755331ad55e2, type: 3}
 --- !u!224 &1491856822 stripped
@@ -124492,7 +124513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4915215168249349459, guid: 335c3b768abd3434c9a7927bec1e052c, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4915215168249349459, guid: 335c3b768abd3434c9a7927bec1e052c, type: 3}
       propertyPath: m_LocalPosition.x
