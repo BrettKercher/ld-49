@@ -83,6 +83,6 @@ public class VisionComponent : MonoBehaviour {
         // Line Of Sight Check
         var ourPositionWithOffset = ourPosition;
         var nodePositionWithOffset = nodePosition;
-        return !Physics.Linecast(ourPositionWithOffset, nodePositionWithOffset, LayerMask.GetMask("Ground"));
+        return !Physics2D.Raycast(ourPositionWithOffset, nodePositionWithOffset, LayerMask.GetMask("Ground"));
     }
 }
