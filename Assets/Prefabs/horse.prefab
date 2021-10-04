@@ -152,7 +152,7 @@ MonoBehaviour:
   _velocity: 0
   _acceleration: 500
   _eqAcceleration: 200
-  _angularAcceleration: 0.025
+  _angularAcceleration: 15
   _maxSpeed: 5
   _backwardsAcceleration: 250
   _animator: {fileID: 0}
@@ -4961,7 +4961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 8026475261113807077
+  uniqueID: 7184930633783793843
   updateError: 1
   checkTime: 0.2
 --- !u!1 &6800265377544790197

@@ -56,7 +56,7 @@ public class vroom_vroom : MonoBehaviour {
 
             //tie the turning rate to the forward velocity 
             var speed = Vector2.Dot(_rigidBody.velocity, transform.right);
-            _rigidBody.rotation -= h * speed * _angularAcceleration;
+            _rigidBody.rotation -= h * speed * _angularAcceleration * Time.deltaTime;
             if (v > 0.5)
             {
                 
