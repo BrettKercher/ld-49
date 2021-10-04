@@ -27,13 +27,12 @@ public class CutSceneTrigger : MonoBehaviour {
         _mainCamera.SubscribeToArrivedEvents(OnPanToTargetFinished, OnPanBackFinished);
         _mainCamera.PanToPositionAndBack(_panTarget.transform.position, other.gameObject, _holdTime, _panSpeed);
     }
-
+    
     private void OnPanToTargetFinished(MainCamera dispatcher) {
-        StartCoroutine(_storyTextObject.ShowText(_text, _textDuration));
-    }
-
-    private void OnPanBackFinished(MainCamera dispatcher) {
         dispatcher.UnsubscribeFromArrivedEvents(OnPanToTargetFinished, OnPanBackFinished);
+        StartCoroutine(_storyTextObject.ShowText(_text, _textDuration));
         Destroy(gameObject);
     }
+
+    private void OnPanBackFinished(MainCamera dispatcher) {}
 }
