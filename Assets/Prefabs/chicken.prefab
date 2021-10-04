@@ -125,4 +125,5 @@ MonoBehaviour:
   _breakThreshold: 4
   _nudgeResult: 0
   _debrisObject: {fileID: 4434099115524824746, guid: d295814c82141984c987e271fa5147f9, type: 3}
+  _debrisObject2: {fileID: 2115317378818084017, guid: 3badafdebd6f7e84095f55c00ad34d2f, type: 3}
   _particleSystem: {fileID: 0}
