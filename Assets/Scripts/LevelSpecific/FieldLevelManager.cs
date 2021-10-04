@@ -18,8 +18,11 @@ public class FieldLevelManager : MonoBehaviour {
         StartCoroutine(_win.Trigger());
     }
 
-    public void RetryOnClick() {
-        Application.LoadLevel(Application.loadedLevel);
+    public void RetryOnClick()
+    {
+        var scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+        Debug.Log("im here");
     }
 
     public void NextLevelOnClick() {
