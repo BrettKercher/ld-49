@@ -6,7 +6,7 @@ public class vroom_vroom : MonoBehaviour {
     [SerializeField] private float _velocity = 0f;
     [SerializeField] private float _acceleration = 500f;
     [SerializeField] private float _eqAcceleration = 200f;
-    [SerializeField] private float _angularAcceleration = 0.15f;
+    [SerializeField] private float _angularAcceleration;
     [SerializeField] private float _maxSpeed = 5f;
     [SerializeField] private float _backwardsAcceleration = 250f;
 
@@ -14,7 +14,7 @@ public class vroom_vroom : MonoBehaviour {
 
     private Rigidbody2D _rigidBody;
     private ParticleSystem _particleSystem;
-    
+
     // Start is called before the first frame update
     private void Awake() {
         _animator = GetComponent<Animator>();
