@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4146286286836399571}
   - component: {fileID: 8279229933094467475}
   - component: {fileID: 7091235816575548027}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
+  _playInReverse: 0
   targets: []
 --- !u!114 &7472343958185979162
 MonoBehaviour:

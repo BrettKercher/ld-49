@@ -108,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 1.75, y: 0.75}
   m_EdgeRadius: 0
 --- !u!114 &5110682565493020796
 MonoBehaviour:
@@ -125,4 +125,5 @@ MonoBehaviour:
   _breakThreshold: 4
   _nudgeResult: 0
   _debrisObject: {fileID: 2115317378818084017, guid: 3badafdebd6f7e84095f55c00ad34d2f, type: 3}
+  _debrisObject2: {fileID: 0}
   _particleSystem: {fileID: 0}

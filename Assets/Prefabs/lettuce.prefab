@@ -50,14 +50,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
 --- !u!212 &4126089448303195600
 SpriteRenderer:
@@ -125,4 +125,5 @@ MonoBehaviour:
   _breakThreshold: 4
   _nudgeResult: 0
   _debrisObject: {fileID: 5186418936630968920, guid: f54ffc577c7affa4da33ab6176658d11, type: 3}
+  _debrisObject2: {fileID: 0}
   _particleSystem: {fileID: 0}

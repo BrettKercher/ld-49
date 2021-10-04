@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5038262598545987251}
   - component: {fileID: 5038262598545987208}
   - component: {fileID: 5038262598545987209}
+  - component: {fileID: 5746685043205226479}
   m_Layer: 0
   m_Name: horse
   m_TagString: Player
@@ -151,7 +152,7 @@ MonoBehaviour:
   _velocity: 0
   _acceleration: 500
   _eqAcceleration: 200
-  _angularAcceleration: 0.1
+  _angularAcceleration: 0.15
   _maxSpeed: 5
   _backwardsAcceleration: 250
   _animator: {fileID: 0}
@@ -4947,6 +4948,22 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5746685043205226479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038262598545987248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 5489063110229266815
+  updateError: 1
+  checkTime: 0.2
 --- !u!1 &6800265377544790197
 GameObject:
   m_ObjectHideFlags: 0

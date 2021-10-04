@@ -100,6 +100,7 @@ MonoBehaviour:
   _breakThreshold: 4
   _nudgeResult: 0
   _debrisObject: {fileID: 8586189735456955217, guid: 86910ed3ef797aa4ab0bd88819e55b9c, type: 3}
+  _debrisObject2: {fileID: 0}
   _particleSystem: {fileID: 0}
 --- !u!61 &804049978903930973
 BoxCollider2D:
@@ -125,7 +126,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 0.5}
   m_EdgeRadius: 0
 --- !u!50 &1357443086856148408
 Rigidbody2D:
