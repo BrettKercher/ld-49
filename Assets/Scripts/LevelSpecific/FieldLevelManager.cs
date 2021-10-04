@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FieldLevelManager : MonoBehaviour {
 
@@ -8,8 +9,8 @@ public class FieldLevelManager : MonoBehaviour {
     [SerializeField] private DestroyOnHit _winGate;
 
     [SerializeField] private Winner _win;
-    
-    
+
+
     // Start is called before the first frame update
     void Awake() {
         _guardSmoosh.SubscribeToDestroyEvent(OnGuardSmooshed);
@@ -22,5 +23,13 @@ public class FieldLevelManager : MonoBehaviour {
     
     private void OnWinGateDestroyed(GameObject gate) {
         StartCoroutine(_win.Trigger());
+    }
+    
+    public void RetryOnClick(){
+        Application.LoadLevel(Application.loadedLevel);
+    }
+    public void NextLevelOnClick()
+    {
+        SceneManager.LoadScene(0);//ints and such also work.
     }
 }
