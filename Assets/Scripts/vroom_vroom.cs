@@ -6,10 +6,10 @@ public class vroom_vroom : MonoBehaviour {
     [SerializeField] private float _velocity = 0f;
     [SerializeField] private float _acceleration = 500f;
     [SerializeField] private float _eqAcceleration = 200f;
-    [SerializeField] private float _angularAcceleration = 0.1f;
+    [SerializeField] private float _angularAcceleration = 0.15f;
     [SerializeField] private float _maxSpeed = 5f;
     [SerializeField] private float _backwardsAcceleration = 250f;
-    
+
     [SerializeField] private Animator _animator;
 
     private Rigidbody2D _rigidBody;
