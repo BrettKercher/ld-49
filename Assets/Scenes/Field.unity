@@ -292,7 +292,7 @@ MonoBehaviour:
   _panTarget: {fileID: 1870041499}
   _panSpeed: 0.5
   _holdTime: 1.5
-  _storyTextObject: {fileID: 0}
+  _storyTextObject: {fileID: 1433725590}
   _text: Horses in captivity? That's not right...
   _textDuration: 3
 --- !u!1001 &55587184
@@ -3001,7 +3001,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -4246,7 +4246,7 @@ Tilemap:
   - m_RefCount: 156
     m_Data: {fileID: 11400000, guid: 2f26c08d89235324e89a94ac0ec53986, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 34
+  - m_RefCount: 33
     m_Data: {fileID: 7808300991088076634, guid: db19cfde41ec65b439f057d33e1a2279, type: 3}
   - m_RefCount: 74
     m_Data: {fileID: 5495138472592240884, guid: 9e2397c07630dc447abfe0c8b3830ab9, type: 3}
@@ -4256,7 +4256,7 @@ Tilemap:
     m_Data: {fileID: 5097980036334217081, guid: db19cfde41ec65b439f057d33e1a2279, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 4772244418586716794, guid: db19cfde41ec65b439f057d33e1a2279, type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {fileID: 4752916065662634482, guid: db19cfde41ec65b439f057d33e1a2279, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -127957,6 +127957,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2764403168387295440, guid: 8947dbe675b12154c9f7b564519c397b, type: 3}
   m_PrefabInstance: {fileID: 23051999}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1433725590 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1741463674427496437, guid: 1a34b2acb4d09034fa62eb6a73ce5383, type: 3}
+  m_PrefabInstance: {fileID: 682639495}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455cdf18b6197d749b2c3ae51c414ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1435471792
 GameObject:
   m_ObjectHideFlags: 0
@@ -128221,7 +128232,7 @@ MonoBehaviour:
   _panTarget: {fileID: 957376759}
   _panSpeed: 0.5
   _holdTime: 1.5
-  _storyTextObject: {fileID: 0}
+  _storyTextObject: {fileID: 1433725590}
   _text: The entrance to the farm. That gate looks awfully smashable.
   _textDuration: 3
 --- !u!61 &1484611776
@@ -128359,7 +128370,7 @@ MonoBehaviour:
   _panTarget: {fileID: 641182784}
   _panSpeed: 0.5
   _holdTime: 1.5
-  _storyTextObject: {fileID: 0}
+  _storyTextObject: {fileID: 1433725590}
   _text: Looks like there's a farmer up ahead. Better sneak around him. Or run him
     over...
   _textDuration: 3
@@ -129413,7 +129424,7 @@ MonoBehaviour:
   _panTarget: {fileID: 496789822}
   _panSpeed: 0.5
   _holdTime: 1.5
-  _storyTextObject: {fileID: 0}
+  _storyTextObject: {fileID: 1433725590}
   _text: There's the stable. Time to...unstable it
   _textDuration: 3
 --- !u!61 &2008081440

@@ -12,7 +12,7 @@ public class StoryText : MonoBehaviour {
     private Sequence _activeSequence;
 
     public IEnumerator ShowText(string text, float holdTime) {
-        if (_activeSequence != null) {
+        if (_activeSequence != null && _activeSequence.IsActive()) {
             yield return _activeSequence.WaitForCompletion();
         }
 
