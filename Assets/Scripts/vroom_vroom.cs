@@ -11,13 +11,16 @@ public class vroom_vroom : MonoBehaviour {
     [SerializeField] private bool _isMoving = false;
     
     [SerializeField] private Animator _animator;
+    
 
     private Rigidbody2D _rigidBody;
+    private ParticleSystem _particleSystem;
     
     // Start is called before the first frame update
     private void Awake() {
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
+        _particleSystem = GetComponent<ParticleSystem>();
         _rigidBody.freezeRotation = true;
         _rigidBody.drag = 8f;
         _rigidBody.mass = 0.5f;
@@ -67,6 +70,14 @@ public class vroom_vroom : MonoBehaviour {
 
             //acceleration scaling to max speed but min acceleration
             _acceleration = 800 * (speed / _maxSpeed) + 200;
+            if (speed > 4)
+            {
+                _particleSystem.enableEmission = true;
+            }
+            else
+            {
+                _particleSystem.enableEmission = false;
+            }
         }
     }
 

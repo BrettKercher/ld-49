@@ -12,11 +12,13 @@ public class DestroyOnHit : MonoBehaviour {
     [SerializeField] private float _breakThreshold = 4f;
     [SerializeField] private NudgeResult _nudgeResult;
     [SerializeField] private GameObject _debrisObject;
+	[SerializeField] private ParticleSystem _particleSystem;
 
     private GameManager _gameManager;
 
     private void Awake() {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		_particleSystem = GetComponent<ParticleSystem>();
     }
 
     private void OnCollisionEnter2D(Collision2D col) {
@@ -28,6 +30,7 @@ public class DestroyOnHit : MonoBehaviour {
             if (_debrisObject != null) {
                 var debris = Instantiate(_debrisObject);
                 debris.transform.position = transform.position;
+                debris.transform.rotation = transform.rotation;
             }
             Destroy(col.otherCollider.gameObject);
         }

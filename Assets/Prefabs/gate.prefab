@@ -100,6 +100,7 @@ MonoBehaviour:
   _breakThreshold: 4
   _nudgeResult: 0
   _debrisObject: {fileID: 8586189735456955217, guid: 86910ed3ef797aa4ab0bd88819e55b9c, type: 3}
+  _particleSystem: {fileID: 0}
 --- !u!61 &804049978903930973
 BoxCollider2D:
   m_ObjectHideFlags: 0
