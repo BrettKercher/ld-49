@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Pathfinding;
 using UnityEngine;
@@ -25,9 +26,18 @@ public class VisionComponent : MonoBehaviour {
         _visualizer.SetEnabled(value);
     }
 
+    private void OnBecameVisible() {
+        SetVisualizerEnable(true);
+    }
+    
+    private void OnBecameInvisible() {
+        SetVisualizerEnable(false);
+    }
+
     private void Awake() {
         _visualizer = GetComponent<VisionRangeVisualizer>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        SetVisualizerEnable(false);
     }
 
     private void Start() {
