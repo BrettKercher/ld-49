@@ -14,6 +14,8 @@ public class vroom_vroom : MonoBehaviour {
 
     private Rigidbody2D _rigidBody;
     private ParticleSystem _particleSystem;
+    
+    public bool Pause { get; set; }
 
     // Start is called before the first frame update
     private void Awake() {
@@ -28,6 +30,10 @@ public class vroom_vroom : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
+        if (Pause) {
+            return;
+        }
+
         var v = Input.GetAxis("Vertical");
         var h = Input.GetAxis("Horizontal");
 
