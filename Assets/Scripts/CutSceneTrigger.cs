@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CutSceneTrigger : MonoBehaviour {
@@ -34,5 +31,6 @@ public class CutSceneTrigger : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    private void OnPanBackFinished(MainCamera dispatcher) {}
+    private void OnPanBackFinished(MainCamera dispatcher) {
+    }
 }
