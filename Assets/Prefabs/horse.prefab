@@ -152,7 +152,7 @@ MonoBehaviour:
   _velocity: 0
   _acceleration: 500
   _eqAcceleration: 200
-  _angularAcceleration: 15
+  _angularAcceleration: 12
   _maxSpeed: 5
   _backwardsAcceleration: 250
   _animator: {fileID: 0}
@@ -4961,7 +4961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 7184930633783793843
+  uniqueID: 8249478221546590312
   updateError: 1
   checkTime: 0.2
 --- !u!1 &6800265377544790197
@@ -4976,7 +4976,7 @@ GameObject:
   - component: {fileID: 4264666076694541796}
   m_Layer: 7
   m_Name: SpotZone
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
