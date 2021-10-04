@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Pathfinding;
 using UnityEngine;
@@ -25,9 +26,18 @@ public class VisionComponent : MonoBehaviour {
         _visualizer.SetEnabled(value);
     }
 
+    private void OnBecameVisible() {
+        SetVisualizerEnable(true);
+    }
+    
+    private void OnBecameInvisible() {
+        SetVisualizerEnable(false);
+    }
+
     private void Awake() {
         _visualizer = GetComponent<VisionRangeVisualizer>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        SetVisualizerEnable(false);
     }
 
     private void Start() {
@@ -83,6 +93,6 @@ public class VisionComponent : MonoBehaviour {
         // Line Of Sight Check
         var ourPositionWithOffset = ourPosition;
         var nodePositionWithOffset = nodePosition;
-        return !Physics.Linecast(ourPositionWithOffset, nodePositionWithOffset, LayerMask.GetMask("Ground"));
+        return !Physics2D.Raycast(ourPositionWithOffset, nodePositionWithOffset, LayerMask.GetMask("Ground"));
     }
 }
