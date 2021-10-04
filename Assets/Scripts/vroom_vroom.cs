@@ -6,12 +6,11 @@ public class vroom_vroom : MonoBehaviour {
     [SerializeField] private float _velocity = 0f;
     [SerializeField] private float _acceleration = 500f;
     [SerializeField] private float _eqAcceleration = 200f;
-    [SerializeField] private float _angularAcceleration = 0.05f;
+    [SerializeField] private float _angularAcceleration = 0.15f;
     [SerializeField] private float _maxSpeed = 5f;
-    [SerializeField] private bool _isMoving = false;
+    [SerializeField] private float _backwardsAcceleration = 250f;
     
     [SerializeField] private Animator _animator;
-    
 
     private Rigidbody2D _rigidBody;
     private ParticleSystem _particleSystem;
@@ -24,9 +23,6 @@ public class vroom_vroom : MonoBehaviour {
         _rigidBody.freezeRotation = true;
         _rigidBody.drag = 8f;
         _rigidBody.mass = 0.5f;
-        _angularAcceleration = 0.05f;
-        _acceleration = 500f;
-        _maxSpeed = 5f;
     }
 
     // Update is called once per frame
@@ -52,7 +48,7 @@ public class vroom_vroom : MonoBehaviour {
             }
             else
             {
-                _velocity = v * 200 * Time.deltaTime;
+                _velocity = v * _backwardsAcceleration * Time.deltaTime;
             }
 
 

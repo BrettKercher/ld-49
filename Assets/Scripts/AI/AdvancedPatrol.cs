@@ -14,6 +14,7 @@ public struct PatrolTarget {
 [UniqueComponent(tag = "ai.destination")]
 public class AdvancedPatrol : VersionedMonoBehaviour {
 
+    [SerializeField] private bool _playInReverse;
     public PatrolTarget[] targets;
 
     // index of current target
@@ -22,20 +23,33 @@ public class AdvancedPatrol : VersionedMonoBehaviour {
     private AIPath _agent;
     private Coroutine _currentAction;
 
+    private bool _reversing;
+
     protected override void Awake () {
         base.Awake();
         _agent = GetComponent<AIPath>();
     }
 
     private void OnPatrolActionComplete(PatrolArriveAction dispatcher) {
-        dispatcher.UnsubscribeFromCompleteEvent(OnPatrolActionComplete);
+        if (dispatcher != null) {
+            dispatcher.UnsubscribeFromCompleteEvent(OnPatrolActionComplete);
+        }
         _currentAction = null;
-        _agent.isStopped = false;
         _agent.rotation = transform.rotation;
         _agent.rotationSpeed = 360;
-
-        _index++;
-        _index %= targets.Length;
+        
+        _index += _reversing ? -1 : 1;
+        if (_playInReverse) {
+            if (_reversing && _index == 0) {
+                _reversing = false;
+            } 
+            else if (!_reversing && _index == targets.Length - 1) {
+                _reversing = true;
+            }
+        }
+        else {
+            _index %= targets.Length;
+        }
 
         _agent.destination = targets[_index].position.position;
         _agent.SearchPath();
@@ -47,9 +61,8 @@ public class AdvancedPatrol : VersionedMonoBehaviour {
         var currentTarget = targets[_index];
 
         if (_agent.reachedEndOfPath && !_agent.pathPending) {
-            if (_agent.reachedDestination) {
+            if (_agent.reachedDestination && currentTarget.arriveAction != null) {
                 // if we did reach the destination, wait for the action to complete, then move to next target
-                _agent.isStopped = true;
                 _agent.rotationSpeed = 0;
                 currentTarget.arriveAction.SubscribeToCompleteEvent(OnPatrolActionComplete);
                 _currentAction = StartCoroutine(currentTarget.arriveAction.Execute(gameObject));

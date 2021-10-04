@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7396648338270253053}
   - component: {fileID: 7396648338270253052}
   - component: {fileID: 7396648338270253054}
+  - component: {fileID: 4974362537664659539}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -102,3 +103,18 @@ MonoBehaviour:
   _effectsTileMap: {fileID: 0}
   _highlightTile: {fileID: 11400000, guid: 4aa23ad2cc65e7148ba82626d25b513c, type: 2}
   _visionRangeColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &4974362537664659539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7396648338270253051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 195b82b228d1d7d40aeb8289bdd2ed1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EmoteSpriteMappings:
+  - emote: 1
+    sprite: {fileID: 21300000, guid: 18d421d794706fa4a980a2b0f0e04cfe, type: 3}

@@ -9,17 +9,24 @@ public class DestroyOnHit : MonoBehaviour {
         LOSE = 1,
     }
 
-    [SerializeField] private float _breakThreshold = 4f;
+    [SerializeField] private float _breakThreshold = 3f;
     [SerializeField] private NudgeResult _nudgeResult;
     [SerializeField] private GameObject _debrisObject;
-[SerializeField] private GameObject _debrisObject2;
+    [SerializeField] private GameObject _debrisObject2;
 	[SerializeField] private ParticleSystem _particleSystem;
 
     private GameManager _gameManager;
+    
+    public delegate void OnDestroyHandler(GameObject destructee);
+    public event OnDestroyHandler Destroyed;
 
     private void Awake() {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		_particleSystem = GetComponent<ParticleSystem>();
+    }
+    
+    public void SubscribeToDestroyEvent(OnDestroyHandler onDestroyFunction) {
+        Destroyed += onDestroyFunction;
     }
 
     private void OnCollisionEnter2D(Collision2D col) {
@@ -38,6 +45,7 @@ public class DestroyOnHit : MonoBehaviour {
                 debris2.transform.position = transform.position;
                 debris2.transform.rotation = transform.rotation;
             }
+            Destroyed?.Invoke(gameObject);
             Destroy(col.otherCollider.gameObject);
         }
         else if (_nudgeResult == NudgeResult.LOSE) {

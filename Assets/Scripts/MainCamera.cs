@@ -14,9 +14,10 @@ public class MainCamera : MonoBehaviour {
     private bool _panningThere;
     private bool _panningBack;
     private float _panToTargetHoldTime;
-    private Vector3 _returnPosition;
+    private GameObject _returnTarget;
     private bool _autoPanning;
     private bool _shouldPanBack;
+    private float _originalSmoothTime;
     
     public delegate void BackToOldTargetHandler(MainCamera dispatcher);
     private event BackToOldTargetHandler BackToOldTarget;
@@ -29,12 +30,12 @@ public class MainCamera : MonoBehaviour {
         _trackingTarget = true;
     }
     
-    public void PanToPositionAndBack(Vector3 target, Vector3 returnPosition, float holdDuration) {
+    public void PanToPositionAndBack(Vector3 target, GameObject returnTarget, float holdDuration, float smoothTime) {
         _autoPanning = true;
         _trackingTarget = false;
         _panTarget = target;
-        _returnPosition = returnPosition;
-
+        _returnTarget = returnTarget;
+        _smoothTime = smoothTime;
         _panningThere = true;
         _panningBack = false;
         _panToTargetHoldTime = holdDuration;
@@ -71,8 +72,9 @@ public class MainCamera : MonoBehaviour {
         }
     }
 
-    private void Start() {
+    private void Awake() {
         _trackingTarget = true;
+        _originalSmoothTime = _smoothTime;
     }
 
     private void FixedUpdate() {
@@ -85,20 +87,21 @@ public class MainCamera : MonoBehaviour {
             _panningThere = false;
             AtNewTarget?.Invoke(this);
             if (_shouldPanBack) {
-                StartCoroutine(SetTargetAfterDelay(_returnPosition, _panToTargetHoldTime));
+                StartCoroutine(SetTargetAfterDelay(_returnTarget, _panToTargetHoldTime));
             }
         }
         
         if (_panningBack && (goalPos - transform.position).magnitude < 1) {
+            _smoothTime = _originalSmoothTime;
             _panningBack = false;
             _autoPanning = false;
             BackToOldTarget?.Invoke(this);
         }
     }
     
-    private IEnumerator SetTargetAfterDelay(Vector3 targetPosition, float delay) {
+    private IEnumerator SetTargetAfterDelay(GameObject target, float delay) {
         yield return new WaitForSeconds(delay);
-        _panTarget = targetPosition;
         _panningBack = true;
+        SetTrackedTarget(target);
     }
 }

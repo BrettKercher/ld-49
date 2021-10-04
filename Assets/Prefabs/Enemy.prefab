@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 6545853713035409252}
   - component: {fileID: 4146286286836399571}
   - component: {fileID: 8279229933094467475}
+  - component: {fileID: 7091235816575548027}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -295,6 +296,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2748aeb494582e4fa2b481bb0859f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _breakThreshold: 4
+  _breakThreshold: 2
   _nudgeResult: 1
   _debrisObject: {fileID: 2882639736631602229, guid: 60cc7d1d8366e104eb97dbc8e7880105, type: 3}
+  _debrisObject2: {fileID: 0}
+  _particleSystem: {fileID: 0}
+--- !u!114 &7091235816575548027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2814561648951719102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b090bec917bbe4c3bbc612ef13f7c4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  useRaycasting: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  thickRaycast: 0
+  thickRaycastRadius: 0
+  use2DPhysics: 1
+  raycastOffset: {x: 0, y: 0, z: 0}
+  useGraphRaycasting: 1
+  quality: 2
